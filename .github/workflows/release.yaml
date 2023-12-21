@@ -26,6 +26,6 @@ jobs:
 
       - name: Create release
         run: |
-          - APP_VERSION=`ls -l target/ | grep -wv original | grep jar | awk -F 'payment-api-' '{ print $2 }' | awk -F '.jar' '{ print $1 }'`
-          - gh release create "v$APP_VERSION" --latest -t "Version v$APP_VERSION" --target main payment-api-$APP_VERSION.jar 
+          APP_VERSION=`ls -l target/ | grep -wv original | grep jar | awk -F 'payment-api-' '{ print $2 }' | awk -F '.jar' '{ print $1 }'`
+          gh release create "v$APP_VERSION" --latest -t "Version v$APP_VERSION" --target main payment-api-$APP_VERSION.jar 
 
