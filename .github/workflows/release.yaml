@@ -28,6 +28,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          APP_VERSION=`ls -l target/ | grep -wv original | grep jar | awk -F 'payment-api-' '{ print $2 }' | awk -F '.jar' '{ print $1 }'`
-          gh release create "v$APP_VERSION" --latest -t "Version v$APP_VERSION" --target main payment-api-$APP_VERSION.jar 
+          APP_NAME=java-release
+          APP_VERSION=`ls -l target/ | grep -wv original | grep jar | awk -F '$APP_NAME-' '{ print $2 }' | awk -F '.jar' '{ print $1 }'`
+          gh release create "v$APP_VERSION" --latest -t "Version v$APP_VERSION" --target main $APP_NAME-$APP_VERSION.jar 
 
