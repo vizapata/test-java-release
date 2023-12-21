@@ -28,7 +28,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          ls target/*.jar
           APP_NAME=java-release
           APP_VERSION=`ls -l target/ | grep -wv original | grep jar | awk -F '$APP_NAME-' '{ print $2 }' | awk -F '.jar' '{ print $1 }'`
+          echo APP_VERSION
+          APP_VERSION=0.0.1-SNAPSHOT
           gh release create "v$APP_VERSION" --latest -t "Version v$APP_VERSION" --target main $APP_NAME-$APP_VERSION.jar 
 
